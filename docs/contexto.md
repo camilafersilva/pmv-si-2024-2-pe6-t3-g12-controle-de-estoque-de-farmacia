@@ -101,16 +101,115 @@ Descreva aqui todos os serviços que serão disponibilizados pelo seu projeto, d
 
 # Arquitetura da Solução
 
-Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
 
-![arq](https://github.com/user-attachments/assets/b9402e05-8445-47c3-9d47-f11696e38a3d)
+## 1. Definição dos Componentes
 
+- **Interface Web**: Onde o usuário interage com o sistema.
+- **API Gateway**: Ponto de entrada para todas as requisições, responsável por autenticação, autorização e roteamento.
+- **Microsserviço "Produto"**: Gerencia as operações relacionadas aos medicamentos.
+- **Banco de Dados (SQL Server)**: Armazena os dados dos medicamentos.
+- **RabbitMQ**: Sistema para comunicação assíncrona entre microsserviços.
+- **Microsserviço "Relatórios"**: Atualiza e gera relatórios de estoque.
+
+## 2. Fluxo de Interação
+
+### 2.1 Criar um Novo Medicamento
+
+1. O usuário (Admin) insere os dados de um novo medicamento na interface web.
+2. A interface web envia uma requisição HTTP POST para a API Gateway com os dados do novo medicamento.
+3. A API Gateway valida a autenticação do usuário e verifica as permissões.
+4. A API Gateway roteia a requisição para o microsserviço “Produto”.
+5. O microsserviço “Produto” recebe a requisição, valida os dados e insere o novo medicamento no banco de dados (SQL Server).
+6. Após a inserção, o microsserviço “Produto” envia uma mensagem para o RabbitMQ informando a criação do novo medicamento.
+7. O microsserviço “Relatórios” recebe a mensagem e atualiza os relatórios de estoque.
+8. O microsserviço “Produto” retorna uma resposta HTTP 201 (Created) para a API Gateway.
+9. A API Gateway repassa a resposta para a interface web.
+10. A interface web exibe uma mensagem de sucesso para o usuário.
+
+### 2.2 Ler um Medicamento
+
+1. O usuário (Admin) solicita a visualização dos dados de um medicamento na interface web.
+2. A interface web envia uma requisição HTTP GET para a API Gateway.
+3. A API Gateway valida a autenticação do usuário e verifica as permissões.
+4. A API Gateway roteia a requisição para o microsserviço “Produto”.
+5. O microsserviço “Produto” consulta o banco de dados (SQL Server) e retorna os dados do medicamento.
+6. O microsserviço “Produto” retorna uma resposta HTTP 200 (OK) com os dados do medicamento para a API Gateway.
+7. A API Gateway repassa a resposta para a interface web.
+8. A interface web exibe os dados do medicamento para o usuário.
+
+### 2.3 Atualizar um Medicamento
+
+1. O usuário (Admin) edita os dados de um medicamento na interface web.
+2. A interface web envia uma requisição HTTP PUT para a API Gateway com os dados atualizados.
+3. A API Gateway valida a autenticação do usuário e verifica as permissões.
+4. A API Gateway roteia a requisição para o microsserviço “Produto”.
+5. O microsserviço “Produto” recebe a requisição, valida os dados e atualiza o medicamento no banco de dados (SQL Server).
+6. Após a atualização, o microsserviço “Produto” envia uma mensagem para o RabbitMQ informando a atualização do medicamento.
+7. O microsserviço “Relatórios” recebe a mensagem e atualiza os relatórios de estoque.
+8. O microsserviço “Produto” retorna uma resposta HTTP 200 (OK) para a API Gateway.
+9. A API Gateway repassa a resposta para a interface web.
+10. A interface web exibe uma mensagem de sucesso para o usuário.
+
+### 2.4 Excluir um Medicamento
+
+1. O usuário (Admin) solicita a exclusão de um medicamento na interface web.
+2. A interface web envia uma requisição HTTP DELETE para a API Gateway.
+3. A API Gateway valida a autenticação do usuário e verifica as permissões.
+4. A API Gateway roteia a requisição para o microsserviço “Produto”.
+5. O microsserviço “Produto” recebe a requisição e remove o medicamento do banco de dados (SQL Server).
+6. Após a exclusão, o microsserviço “Produto” envia uma mensagem para o RabbitMQ informando a exclusão do medicamento.
+7. O microsserviço “Relatórios” recebe a mensagem e atualiza os relatórios de estoque.
+8. O microsserviço “Produto” retorna uma resposta HTTP 200 (OK) para a API Gateway.
+9. A API Gateway repassa a resposta para a interface web.
+10. A interface web exibe uma mensagem de sucesso para o usuário.
+
+### 3. Atualização do Banco de Dados
+
+1. O microsserviço "Produto" recebe a requisição.
+2. O microsserviço "Produto" valida os dados.
+3. O microsserviço "Produto" atualiza o medicamento no banco de dados (SQL Server).
+
+### 4. Notificação de Atualização
+
+1. Após a atualização, o microsserviço "Produto" envia uma mensagem para o RabbitMQ informando a atualização.
+
+### 5. Atualização de Relatórios
+
+1. O microsserviço "Relatórios", subscrito na fila do RabbitMQ, recebe a mensagem.
+2. O microsserviço "Relatórios" atualiza os relatórios de estoque em background.
+
+### 6. Confirmação da Operação
+
+1. O microsserviço "Produto" retorna uma resposta HTTP 200 (OK) para a API Gateway.
+2. A API Gateway repassa a resposta para a interface web.
+3. A interface web exibe uma mensagem de sucesso para o usuário.
+
+<!-- ![arq](https://github.com/user-attachments/assets/b9402e05-8445-47c3-9d47-f11696e38a3d) -->
 
 ## Tecnologias Utilizadas
 
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
+- Linguagem de Programação: C# (Backend) / HTML, CSS, JS (Frontend).
+- Framework Backend: ASP.NET Core (para criação de APIs RESTful).
+- Framework Frontend: React (para interface web responsiva) / React Native (para aplicativo móvel).
+- Banco de Dados: SQL Server (confiabilidade e robustez).
+- Cache: Redis (armazenamento em memória para alta performance).
+- Message Broker: RabbitMQ (comunicação assíncrona e escalabilidade).
+- IDEs: Visual Studio, Visual Studio Code.
+- Ferramentas: Git (controle de versão), Swagger (documentação da API).
 
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+| Passo | Ação | Detalhes |
+|---|---|---|
+| 1 | Usuário interage com o sistema | Acessa o sistema via Navegador/Aplicativo. |
+| 2 | Requisição enviada para a API | O Navegador/Aplicativo envia a requisição para a API (ASP.NET Core). |
+| 3 | Verificação no Cache | A API verifica se os dados solicitados estão presentes no Cache (Redis). |
+| 4 | Dados em Cache (Cache Hit) | Se os dados estiverem no cache: <br> - A API recupera os dados do Cache. <br> - A API retorna os dados para o Navegador/Aplicativo. |
+| 5 | Dados não encontrados no Cache (Cache Miss) | Se os dados não estiverem no cache: <br> - A API publica uma mensagem na fila (RabbitMQ). |
+| 6 | Microserviço processa a mensagem | O Microserviço (C#) consome a mensagem da fila. |
+| 7 | Consulta ao Banco de Dados | O Microserviço consulta o Banco de Dados (SQL Server) pelos dados. |
+| 8 | Retorno dos dados | O Microserviço retorna os dados para a fila (RabbitMQ). |
+| 9 | API processa os dados | A API consome a mensagem da fila com os dados. | 
+| 10 | Armazenamento em Cache | A API armazena os dados no Cache (Redis) para futuras requisições. |
+| 11 | Retorno para o Usuário | A API retorna os dados para o Navegador/Aplicativo, que os exibe para o Usuário. |
 
 ## Hospedagem
 
