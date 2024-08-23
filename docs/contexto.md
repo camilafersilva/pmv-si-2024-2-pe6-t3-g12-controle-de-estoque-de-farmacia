@@ -49,21 +49,58 @@ Adicione informações sobre o público-alvo por meio de uma descrição textual
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
+As tabelas a seguir apresentam os requisitos funcionais e não funcionais que definem o escopo do projeto de controle de estoque de medicamentos para farmácias. Cada requisito foi identificado com um ID único, acompanhado por uma descrição e uma prioridade atribuída.
+
+Para determinar a prioridade dos requisitos, foi utilizada uma abordagem de classificação em três níveis:
+
+**Alta:** Requisitos essenciais que são críticos para o funcionamento do sistema. Devem ser implementados na primeira versão do sistema, pois sua ausência comprometeria a funcionalidade principal.
+
+**Média:** Requisitos importantes, mas que não são críticos para o funcionamento básico do sistema. Embora desejáveis, sua ausência não impede o uso do sistema, mas pode impactar a eficiência ou a experiência do usuário.
+
+**Baixa:** Requisitos desejáveis que agregam valor, mas que podem ser adiados para versões futuras do sistema. Não são essenciais para o funcionamento inicial.
+
+Essa classificação foi aplicada para garantir que os aspectos mais críticos do sistema sejam priorizados no desenvolvimento. As tabelas a seguir organizam os requisitos de acordo com essa priorização.
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+| ID    | Descrição do Requisito                                                                                                       | Prioridade |
+|-------|------------------------------------------------------------------------------------------------------------------------------|------------|
+| **RF01** | **Criar Novo Medicamento:** O usuário deve poder cadastrar novos medicamentos no sistema, inserindo dados como nome, princípio ativo, fabricante, data de validade, quantidade em estoque e preço. | **Alta**   |
+| **RF02** | **Ler Medicamento:** O usuário deve poder consultar os dados de um medicamento específico, utilizando filtros como nome, princípio ativo ou código de barras. | **Alta**   |
+| **RF03** | **Atualizar Medicamento:** O usuário deve poder atualizar os dados de um medicamento já cadastrado, como quantidade em estoque, preço e data de validade. | **Alta**   |
+| **RF04** | **Excluir Medicamento:** O usuário deve poder remover um medicamento do sistema, caso ele não esteja mais disponível ou não seja mais vendido. | **Alta**  |
+| **RF05** | **Interface Web:** O sistema deve ter uma interface web para acesso e gestão dos medicamentos. | **Alta**   |
+| **RF06** | **Aplicativo Mobile:** O sistema deve contar com um aplicativo mobile para acesso e gestão dos medicamentos. | **Alta**   |
+| **RF07** | **Controle de Acesso:** O sistema deve permitir que somente usuários autenticados possam acessar e gerenciar os medicamentos, com diferentes níveis de acesso (administrador, farmacêutico, etc.). | **Alta**   |
+| **RF08** | **Histórico de Movimentações:** O sistema deve registrar um histórico de todas as operações realizadas, como criação, atualização e exclusão de medicamentos. | **Baixa**  |
+| **RF09** | **Alerta de Validade:** O sistema deve notificar o usuário sobre medicamentos que estão próximos da data de validade. | **Média**  |
+| **RF10** | **Relatórios:** O sistema deve gerar relatórios de estoque, incluindo medicamentos em falta, com baixa quantidade ou próximos da validade. | **Baixa**  |
+| **RF11** | **Tela de Login/Cadastro:** O sistema deve exibir uma tela para login e cadastro de usuários, permitindo o acesso ao sistema de controle de estoque de medicamentos. | **Alta**   |
+| **RF12** | **Seleção de Opção de Login/Cadastro:** O sistema deve exibir uma opção para o usuário selecionar entre login ou cadastro na plataforma. | **Alta**   |
+| **RF13** | **Cadastro de Usuário:** O sistema deve permitir que o usuário final (farmacêuticos, administradores, etc.) se cadastre com dados como email, senha, telefone, CPF e número do registro profissional (CRF). | **Alta**   |
+| **RF14** | **Login com Credenciais Existentes:** O sistema deve permitir que o usuário (funcionário ou administrador) entre com o seu email, senha. | **Alta**   |
+| **RF15** | **Recuperação de Senha:** O sistema deve permitir a recuperação de senha para os usuários cadastrados, enviando um link de redefinição para o email registrado. | **Média**  |
+
+
 
 ### Requisitos não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+
+
+| ID    | Descrição do Requisito                                                                                                                                                     | Prioridade |
+|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| **RNF01** | **Desempenho:** O sistema deve ser capaz de suportar consultas e atualizações em tempo real, com um tempo de resposta inferior a 2 segundos para operações básicas. | **Alta**       |
+| **RNF02** | **Segurança:** O sistema deve garantir a segurança através de criptografia de dados sensíveis e autenticação robusta. | **Alta**       |
+| **RNF03** | **Escalabilidade:** O sistema deve ser escalável para suportar um aumento no número de usuários e medicamentos cadastrados, sem perda de desempenho. | **Média**      |
+| **RNF04** | **Usabilidade:** A interface deve ser intuitiva e fácil de usar, permitindo que usuários com diferentes níveis de conhecimento tecnológico possam utilizar o sistema sem dificuldades. | **Alta**       |
+| **RNF05** | **Compatibilidade:** O sistema deve ser compatível com os principais navegadores web (Chrome, Firefox, Edge, Safari) e dispositivos móveis (Android, iOS). | **Alta**       |
+| **RNF06** | **Disponibilidade:** O sistema deve estar disponível para uso 24/7, com um tempo de inatividade planejado não superior a 1 hora por mês para manutenção. | **Alta**       |
+| **RNF07** | **Manutenibilidade:** O sistema deve ser projetado para facilitar a manutenção e a atualização, com código limpo e documentação adequada. | **Alta**      |
+| **RNF08** | **Backup:** O sistema deve realizar backups automáticos dos dados ao menos uma vez por dia, garantindo a recuperação em caso de falha. | **Alta**       |
+| **RNF09** | **Tempo de Recuperação:** Em caso de falha, o sistema deve ser capaz de restaurar o serviço em até 1 hora. | **Alta**      |
+
+
+
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
@@ -87,7 +124,9 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|02| Deverá ser desenvolvido uma aplicação web       |
+|03| Deverá ser desenvolvida uma aplicação mobile       |
+
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
