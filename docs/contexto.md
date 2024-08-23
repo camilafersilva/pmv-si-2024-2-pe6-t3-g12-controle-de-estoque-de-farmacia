@@ -149,7 +149,7 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 # Arquitetura da Solução
 
 
-## 1. Definição dos Componentes
+## Definição dos Componentes
 
 - **Interface Web**: Onde o usuário interage com o sistema.
 - **API Gateway**: Ponto de entrada para todas as requisições, responsável por autenticação, autorização e roteamento.
@@ -158,78 +158,78 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 - **RabbitMQ**: Sistema para comunicação assíncrona entre microsserviços.
 - **Microsserviço "Relatórios"**: Atualiza e gera relatórios de estoque.
 
-## 2. Fluxo de Interação
+## Fluxo de Interação
 
-### 2.1 Criar um Novo Medicamento
+### Criar um Novo Medicamento
 
-1. O usuário (Admin) insere os dados de um novo medicamento na interface web.
-2. A interface web envia uma requisição HTTP POST para a API Gateway com os dados do novo medicamento.
-3. A API Gateway valida a autenticação do usuário e verifica as permissões.
-4. A API Gateway roteia a requisição para o microsserviço “Produto”.
-5. O microsserviço “Produto” recebe a requisição, valida os dados e insere o novo medicamento no banco de dados (SQL Server).
-6. Após a inserção, o microsserviço “Produto” envia uma mensagem para o RabbitMQ informando a criação do novo medicamento.
-7. O microsserviço “Relatórios” recebe a mensagem e atualiza os relatórios de estoque.
-8. O microsserviço “Produto” retorna uma resposta HTTP 201 (Created) para a API Gateway.
-9. A API Gateway repassa a resposta para a interface web.
-10. A interface web exibe uma mensagem de sucesso para o usuário.
+- O usuário (Admin) insere os dados de um novo medicamento na interface web.
+- A interface web envia uma requisição HTTP POST para a API Gateway com os dados do novo medicamento.
+- A API Gateway valida a autenticação do usuário e verifica as permissões.
+- A API Gateway roteia a requisição para o microsserviço “Produto”.
+- O microsserviço “Produto” recebe a requisição, valida os dados e insere o novo medicamento no banco de dados (SQL Server).
+- Após a inserção, o microsserviço “Produto” envia uma mensagem para o RabbitMQ informando a criação do novo medicamento.
+- O microsserviço “Relatórios” recebe a mensagem e atualiza os relatórios de estoque.
+- O microsserviço “Produto” retorna uma resposta HTTP 201 (Created) para a API Gateway.
+- A API Gateway repassa a resposta para a interface web.
+- A interface web exibe uma mensagem de sucesso para o usuário.
 
-### 2.2 Ler um Medicamento
+### Ler um Medicamento
 
-1. O usuário (Admin) solicita a visualização dos dados de um medicamento na interface web.
-2. A interface web envia uma requisição HTTP GET para a API Gateway.
-3. A API Gateway valida a autenticação do usuário e verifica as permissões.
-4. A API Gateway roteia a requisição para o microsserviço “Produto”.
-5. O microsserviço “Produto” consulta o banco de dados (SQL Server) e retorna os dados do medicamento.
-6. O microsserviço “Produto” retorna uma resposta HTTP 200 (OK) com os dados do medicamento para a API Gateway.
-7. A API Gateway repassa a resposta para a interface web.
-8. A interface web exibe os dados do medicamento para o usuário.
+- O usuário (Admin) solicita a visualização dos dados de um medicamento na interface web.
+- A interface web envia uma requisição HTTP GET para a API Gateway.
+- A API Gateway valida a autenticação do usuário e verifica as permissões.
+- A API Gateway roteia a requisição para o microsserviço “Produto”.
+- O microsserviço “Produto” consulta o banco de dados (SQL Server) e retorna os dados do medicamento.
+- O microsserviço “Produto” retorna uma resposta HTTP 200 (OK) com os dados do medicamento para a API Gateway.
+- A API Gateway repassa a resposta para a interface web.
+- A interface web exibe os dados do medicamento para o usuário.
 
-### 2.3 Atualizar um Medicamento
+### Atualizar um Medicamento
 
-1. O usuário (Admin) edita os dados de um medicamento na interface web.
-2. A interface web envia uma requisição HTTP PUT para a API Gateway com os dados atualizados.
-3. A API Gateway valida a autenticação do usuário e verifica as permissões.
-4. A API Gateway roteia a requisição para o microsserviço “Produto”.
-5. O microsserviço “Produto” recebe a requisição, valida os dados e atualiza o medicamento no banco de dados (SQL Server).
-6. Após a atualização, o microsserviço “Produto” envia uma mensagem para o RabbitMQ informando a atualização do medicamento.
-7. O microsserviço “Relatórios” recebe a mensagem e atualiza os relatórios de estoque.
-8. O microsserviço “Produto” retorna uma resposta HTTP 200 (OK) para a API Gateway.
-9. A API Gateway repassa a resposta para a interface web.
-10. A interface web exibe uma mensagem de sucesso para o usuário.
+- O usuário (Admin) edita os dados de um medicamento na interface web.
+- A interface web envia uma requisição HTTP PUT para a API Gateway com os dados atualizados.
+- A API Gateway valida a autenticação do usuário e verifica as permissões.
+- A API Gateway roteia a requisição para o microsserviço “Produto”.
+- O microsserviço “Produto” recebe a requisição, valida os dados e atualiza o medicamento no banco de dados (SQL Server).
+- Após a atualização, o microsserviço “Produto” envia uma mensagem para o RabbitMQ informando a atualização do medicamento.
+- O microsserviço “Relatórios” recebe a mensagem e atualiza os relatórios de estoque.
+- O microsserviço “Produto” retorna uma resposta HTTP 200 (OK) para a API Gateway.
+- A API Gateway repassa a resposta para a interface web.
+- A interface web exibe uma mensagem de sucesso para o usuário.
 
-### 2.4 Excluir um Medicamento
+### Excluir um Medicamento
 
-1. O usuário (Admin) solicita a exclusão de um medicamento na interface web.
-2. A interface web envia uma requisição HTTP DELETE para a API Gateway.
-3. A API Gateway valida a autenticação do usuário e verifica as permissões.
-4. A API Gateway roteia a requisição para o microsserviço “Produto”.
-5. O microsserviço “Produto” recebe a requisição e remove o medicamento do banco de dados (SQL Server).
-6. Após a exclusão, o microsserviço “Produto” envia uma mensagem para o RabbitMQ informando a exclusão do medicamento.
-7. O microsserviço “Relatórios” recebe a mensagem e atualiza os relatórios de estoque.
-8. O microsserviço “Produto” retorna uma resposta HTTP 200 (OK) para a API Gateway.
-9. A API Gateway repassa a resposta para a interface web.
-10. A interface web exibe uma mensagem de sucesso para o usuário.
+- O usuário (Admin) solicita a exclusão de um medicamento na interface web.
+- A interface web envia uma requisição HTTP DELETE para a API Gateway.
+- A API Gateway valida a autenticação do usuário e verifica as permissões.
+- A API Gateway roteia a requisição para o microsserviço “Produto”.
+- O microsserviço “Produto” recebe a requisição e remove o medicamento do banco de dados (SQL Server).
+- Após a exclusão, o microsserviço “Produto” envia uma mensagem para o RabbitMQ informando a exclusão do medicamento.
+- O microsserviço “Relatórios” recebe a mensagem e atualiza os relatórios de estoque.
+- O microsserviço “Produto” retorna uma resposta HTTP 200 (OK) para a API Gateway.
+- A API Gateway repassa a resposta para a interface web.
+- A interface web exibe uma mensagem de sucesso para o usuário.
 
-### 3. Atualização do Banco de Dados
+### Atualização do Banco de Dados
 
-1. O microsserviço "Produto" recebe a requisição.
-2. O microsserviço "Produto" valida os dados.
-3. O microsserviço "Produto" atualiza o medicamento no banco de dados (SQL Server).
+- O microsserviço "Produto" recebe a requisição.
+- O microsserviço "Produto" valida os dados.
+- O microsserviço "Produto" atualiza o medicamento no banco de dados (SQL Server).
 
-### 4. Notificação de Atualização
+### Notificação de Atualização
 
-1. Após a atualização, o microsserviço "Produto" envia uma mensagem para o RabbitMQ informando a atualização.
+- Após a atualização, o microsserviço "Produto" envia uma mensagem para o RabbitMQ informando a atualização.
 
-### 5. Atualização de Relatórios
+### Atualização de Relatórios
 
-1. O microsserviço "Relatórios", subscrito na fila do RabbitMQ, recebe a mensagem.
-2. O microsserviço "Relatórios" atualiza os relatórios de estoque em background.
+- O microsserviço "Relatórios", subscrito na fila do RabbitMQ, recebe a mensagem.
+- O microsserviço "Relatórios" atualiza os relatórios de estoque em background.
 
-### 6. Confirmação da Operação
+### Confirmação da Operação
 
-1. O microsserviço "Produto" retorna uma resposta HTTP 200 (OK) para a API Gateway.
-2. A API Gateway repassa a resposta para a interface web.
-3. A interface web exibe uma mensagem de sucesso para o usuário.
+- O microsserviço "Produto" retorna uma resposta HTTP 200 (OK) para a API Gateway.
+- A API Gateway repassa a resposta para a interface web.
+- A interface web exibe uma mensagem de sucesso para o usuário.
 
 <!-- ![arq](https://github.com/user-attachments/assets/b9402e05-8445-47c3-9d47-f11696e38a3d) -->
 
