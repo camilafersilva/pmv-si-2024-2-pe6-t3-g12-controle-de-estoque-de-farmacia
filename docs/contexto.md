@@ -136,7 +136,15 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 # Catálogo de Serviços
 
-Descreva aqui todos os serviços que serão disponibilizados pelo seu projeto, detalhando suas características e funcionalidades.
+|ID|Serviço|Descição|
+|--|-------|--------|
+|01|Control de acesso|Capacidade de autenticar usuários cadastrados, provendo acesso ao sistema de forma segura.|
+|02|Gerenciamento de itens|Capacidade de cadastrar, editar e excluir itens da base de dados.|
+|03|Gerenciamento de fluxo de itens|Capacidade de acompanhar e gerenciar o fluxo de movimentação de itens cadastrados.|
+|04|Detalhamento de itens|Capacidade de exibir detalhes técnicos como descrição, quantidade e movimentação de itens específicos.|
+|05|Atualização de listagem de itens|Capacidade de atualizar em tempo real a listagem de itens após modificação no banco de dados.|
+|06|Notificação|Capacidade de notificar o usuário do sistema a respeito de criações, alterações ou exclusão de itens.|
+|07|Filtros de pesquisa|Capacidade de filtrar pesquisa de itens de acordo com ID, Nome, Data de cadastro e Data de atualização do item.|
 
 # Arquitetura da Solução
 
