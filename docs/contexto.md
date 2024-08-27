@@ -92,6 +92,10 @@ Essa classificação foi aplicada para garantir que os aspectos mais críticos d
 | **RF14** | **Login com Credenciais Existentes:** O sistema deve permitir que o usuário (funcionário ou administrador) entre com o seu email, senha. | **Alta**   |
 | **RF15** | **Recuperação de Senha:** O sistema deve permitir a recuperação de senha para os usuários cadastrados, enviando um link de redefinição para o email registrado. | **Média**  |
 | **RF16** | **Busca e Filtragem de Insumos:** O sistema deve oferecer funcionalidades de busca e filtragem para que os usuários possam encontrar rapidamente informações sobre insumos específicos, facilitando a gestão e a localização de produtos no estoque. | **Baixa**  |
+| **RF17** | **Notificação de Validade:** O sistema deve enviar alertas e notificações sobre insumos próximos da data de validade ou vencidos, para que ações corretivas possam ser tomadas antes que os produtos se tornem inutilizáveis. | **Alta**  |
+| **RF18** | **Registro de Insumos:** O sistema deve permitir o cadastro de novos insumos farmacêuticos com informações detalhadas, incluindo nome, quantidade, data de validade e fornecedor. | **Alta**  |
+| **RF19** | **Controle de Estoque:**O sistema deve permitir o monitoramento e atualização da quantidade de insumos em estoque, com a capacidade de registrar entradas e saídas de produtos de forma precisa e em tempo real. | **Alta**  |
+| **RF19** | **Controle de Estoque:**O sistema deve permitir o monitoramento e atualização da quantidade de insumos em estoque, com a capacidade de registrar entradas e saídas de produtos de forma precisa e em tempo real. | **Alta**  |
 
 
 ### Requisitos não Funcionais
