@@ -95,6 +95,9 @@ Essa classificação foi aplicada para garantir que os aspectos mais críticos d
 | **RF17** | **Notificação de Validade:** O sistema deve enviar alertas e notificações sobre insumos próximos da data de validade ou vencidos, para que ações corretivas possam ser tomadas antes que os produtos se tornem inutilizáveis. | **Alta**  |
 | **RF18** | **Registro de Insumos:** O sistema deve permitir o cadastro de novos insumos farmacêuticos com informações detalhadas, incluindo nome, quantidade, data de validade e fornecedor. | **Alta**  |
 | **RF19** | **Controle de Estoque:** O sistema deve permitir o monitoramento e atualização da quantidade de insumos em estoque, com a capacidade de registrar entradas e saídas de produtos de forma precisa e em tempo real. | **Alta**  |
+| **RF20** | **Controle de Acesso:** O sistema deve permitir que somente usuários autenticados possam acessar e gerenciar os medicamentos, com diferentes níveis de acesso (administrador, farmacêutico, etc.). | **Alta**   |
+| **RF21** | **Histórico de Movimentações:** O sistema deve registrar um histórico de todas as operações realizadas, como criação, atualização e exclusão de medicamentos. | **Baixa**  |
+| **RF22** | **Geração de Relatórios:** O sistema deve gerar relatórios de estoque, incluindo medicamentos em falta, com baixa quantidade ou próximos da validade. | **Média**  |
 
 
 
